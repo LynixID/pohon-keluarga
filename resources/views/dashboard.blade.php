@@ -74,14 +74,22 @@
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
                                     <dt class="text-sm font-medium text-gray-500 truncate">Keluarga</dt>
-                                    <dd class="text-lg font-medium text-gray-900">0 Anggota</dd>
+                                    <dd class="text-lg font-medium text-gray-900">
+                                        @if(auth()->user()->family)
+                                            {{ auth()->user()->family->family_name }}<br>
+                                            1 Anggota
+                                        @else
+                                            Belum ada keluarga<br>
+                                            0 Anggota
+                                        @endif
+                                    </dd>
                                 </dl>
                             </div>
                         </div>
                     </div>
                     <div class="bg-gray-50 px-5 py-3">
                         <div class="text-sm">
-                            <a href="#" class="font-medium text-indigo-700 hover:text-indigo-900">
+                            <a href="{{ route('family.index') }}" class="font-medium text-indigo-700 hover:text-indigo-900">
                                 Kelola keluarga →
                             </a>
                         </div>
@@ -150,7 +158,7 @@
                         <h3 class="mt-2 text-sm font-medium text-gray-900">Belum ada aktivitas</h3>
                         <p class="mt-1 text-sm text-gray-500">Mulai dengan menambahkan anggota keluarga Anda.</p>
                         <div class="mt-6">
-                            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                            <a href="{{ route('family.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
                                 Tambah Anggota Keluarga
                             </a>
                         </div>

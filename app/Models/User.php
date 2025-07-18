@@ -73,4 +73,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->is_approved && $this->email_verified_at !== null;
     }
+
+    /**
+     * Relasi ke Family
+     */
+    public function family()
+    {
+        return $this->hasOne(Family::class);
+    }
 }

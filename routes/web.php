@@ -56,7 +56,16 @@ Route::middleware(['auth', 'verified', 'approved'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
-    // Family routes will be added here later
+    // Family CRUD
+    Route::get('/family', [\App\Http\Controllers\FamilyController::class, 'index'])->name('family.index');
+    Route::get('/family/create', [\App\Http\Controllers\FamilyController::class, 'create'])->name('family.create');
+    Route::post('/family', [\App\Http\Controllers\FamilyController::class, 'store'])->name('family.store');
+    Route::get('/family/{family}/edit', [\App\Http\Controllers\FamilyController::class, 'edit'])->name('family.edit');
+    Route::put('/family/{family}', [\App\Http\Controllers\FamilyController::class, 'update'])->name('family.update');
+    Route::delete('/family/{family}', [\App\Http\Controllers\FamilyController::class, 'destroy'])->name('family.destroy');
+
+    // Family Member CRUD
+    Route::resource('family.members', \App\Http\Controllers\FamilyMemberController::class)->except(['show']);
 });
 
 // Admin Routes
